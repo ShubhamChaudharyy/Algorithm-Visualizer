@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:ital,wght@0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+}
+.left-about{
+    height:100vh;
+    width: 60vw;
+}
+.right-login{
+    height: 60vh;
+    width: 35vw;
+    right: 30px;
+}
+body{
+    overflow: hidden;
+}
+
+.header-paper{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -50px;
+    left: 20px;
+    background: -webkit-linear-gradient(#deb704, #ff1900);
+}
+.header-paper p{
+    text-align: center;
+    color: white;
+    position: relative;
+    top: 20%;
+}
+#standard-basic{
+    width: 400px ;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+}
+.login-form{
+    position: relative;
+    top: 50px;
+    display: flex;
+    justify-content: center;
+  
+
+}
+.right-login{
+    position: relative;
+    animation: upBottom 2s;
+    animation-fill-mode: forwards;
+
+}
+.sign-up{
+    position: relative;
+    top: 170px;
+}
+.left-about{
+    position: relative;
+    animation: bottomUp 2s;
+    animation-fill-mode: forwards;
+}
+.main-name{
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 92px;
+    position: relative;
+    line-height: 85px;
+    top: 100px !important;
+    background: -webkit-linear-gradient(#deb704, #ff1900);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation-fill-mode: forwards;
+    animation: fade 10s;
+}
+@keyframes fade{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+@keyframes bottomUp{
+    from{top:500px}
+    to{top:0px}
+}
+@keyframes upBottom{
+    from{top:-500px}
+    to{top:100px}
+}
