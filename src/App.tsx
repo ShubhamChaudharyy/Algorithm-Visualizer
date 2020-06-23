@@ -2,12 +2,12 @@ import './App.css';
 import React, { useEffect, useContext, useState, Fragment } from "react";
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 import LandingPage from './components/home_page/LandingPage'
-import ActivityOverview from './components/userHandle/ActivityOverview'
+import startHome from './components/startPage/startHome'
 const App=()=>(
     <Router>
         <Switch>
-            <Route exact path='/' component={LandingPage} />
-            <Route exact path='/user/:name' component={ActivityOverview} />
+            <Route exact path='/' component={startHome} />
+            <Route exact path='/user/:name' component={LandingPage} />
         </Switch>
     </Router>
 )

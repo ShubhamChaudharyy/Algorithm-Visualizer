@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,500;0,600;0,700;0,800;0,900;1,100;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&family=Staatliches&display=swap');
+.parent-start-page{
+    display: flex;
+    justify-content: center;
+    
+}
+p{
+    position: absolute;
+    margin:50px;
+}
+.start-page{
+    border-radius: 20px;
+    height: 80vh;
+    width: 90vw;
+    background-color: white;
+    margin-top: 80px;
+}
+.custom-button{
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid white;
+    padding:10px;
+    width: 200px;
+    border-radius: 30px;
+}
+.about-developer{
+    height: 80vh;
+    position: relative;
+    background:#2778e8;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius:20px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 20px;
+    font-weight: 200;
+}
+.developer-words{
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 100;
+}
+body{
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,166,188,1) 0%, rgba(18,199,237,1) 0%, rgba(0,130,255,1) 100%) !important;
+}

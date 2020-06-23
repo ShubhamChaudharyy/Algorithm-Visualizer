@@ -1,4 +1,5 @@
-const {adminAuth,DB,xdb}=require('../constant');
+const FirebaseClass=require('../constant') 
+var firebase=new FirebaseClass();
 
 exports.fbAuth=(req,res,next)=>{
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
@@ -7,11 +8,11 @@ exports.fbAuth=(req,res,next)=>{
     else {
         return res.status(403).json({error:'Unauthorized'})
     }
-    adminAuth.verifyIdToken(idToken)
+    firebase.admin_auth.verifyIdToken(idToken)
     .then(decodedToken=>{
         req.user=decodedToken;
         console.log(decodedToken)
-        return xdb.collection('user')
+        return firebase.user_signup(req.user.userName)
         .where('userId','==',req.user.uid)
         .limit(1)
         .get()
@@ -24,6 +25,6 @@ exports.fbAuth=(req,res,next)=>{
     .catch(err=>{
         console.log("error in middleware")
         console.log(err)
-        return status(403).json(err)
+        return res.status(403).json({error:"Login again"})
     })
 }

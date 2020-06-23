@@ -1,4 +1,6 @@
-const {DB,xdb,auth} = require('../constant')
+const FirebaseClass=require('../constant')
+var firebase = new FirebaseClass();
+
 const bodyParser=require('body-parser')
 const {isEmpty,notMatching}=require('../util/util')
 module.exports.login=(req,res,next)=>{
@@ -8,7 +10,7 @@ module.exports.login=(req,res,next)=>{
     if(isEmpty(user.password)) error.password='Must not be empty';
 
     if(Object.keys(error).length>0) return res.status(400).json(error)
-    auth.signInWithEmailAndPassword(user.email,user.password)
+    firebase.auth.signInWithEmailAndPassword(user.email,user.password)
     .then(data=>{
         return data.user.getIdToken();
     })

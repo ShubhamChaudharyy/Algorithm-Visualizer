@@ -1,4 +1,5 @@
-const {DB,xdb,auth} = require('../constant')
+const FirebaseClass=require('../constant') 
+var firebase=new FirebaseClass();
 const bodyParser=require('body-parser')
 module.exports.postBugReports=(req,res,next)=>{
     if(req.method !=='POST'){
@@ -7,13 +8,15 @@ module.exports.postBugReports=(req,res,next)=>{
     const{description,name}=req.body
     const new_bug_report={ 
         description,
-        userHandle:req.user.userName,
+        userName:req.user.userName,
         resolved:false,
+        likeCount:0,
+        commentCount:0,
         priority_level:'unmarked',
         assigned_to:'unassigned', 
-        createdAt:DB.time_stamp.fromDate(new Date())
+        createdAt:firebase.time_stamp.fromDate(new Date())
     }
-    DB.bug_reports.add(new_bug_report)
+    firebase.bug_reports().add(new_bug_report)
     .then(doc=>{
         res.json({message:'created Successfully!!!'})
     })

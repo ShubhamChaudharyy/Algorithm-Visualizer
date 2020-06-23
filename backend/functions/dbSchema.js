@@ -9,3 +9,21 @@ let db={
         }
     ]
 }
+const userDetails={
+    credentials:{
+        userId,
+        email,
+        handle,
+        createdAt,
+        imageUrl,
+        bio,
+        website,
+        location
+    },
+    likes:[
+        {
+            userHandle,
+            bugReportId,
+        }
+    ]
+}

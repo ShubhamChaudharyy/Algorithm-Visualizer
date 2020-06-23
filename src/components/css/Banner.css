@@ -1,93 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:ital,wght@0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&display=swap');
-*{
-    font-family: 'Poppins', sans-serif;
-}
-.left-about{
-    height:100vh;
-    width: 60vw;
-}
-.right-login{
-    height: 60vh;
-    width: 35vw;
-    right: 30px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,500;0,600;0,700;0,800;0,900;1,100;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 body{
-    overflow: hidden;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,166,188,1) 0%, rgba(18,199,237,1) 0%, rgba(0,130,255,1) 100%) !important;
+}
+.inner-body{
+    height: 90vh;
+    width: 96vw;
+    background-color: white;
+    margin-top: 30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-.header-paper{
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: -50px;
-    left: 20px;
-    background: -webkit-linear-gradient(#deb704, #ff1900);
+.top{
+   margin: 100px;
 }
-.header-paper p{
-    text-align: center;
-    color: white;
-    position: relative;
-    top: 20%;
+.fixed-sidebar{
+    height: 89.2vh;
+    position: fixed;
+    border-radius: 0px;
+    top: 5vh;
+    width: 300px;
+    left: 2vw;
+    opacity: 0.8;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,166,188,1) 0%, rgba(73,76,77,1) 0%, rgba(36,38,40,1) 100%);
 }
-#standard-basic{
-    width: 400px ;
-    font-family: 'Poppins', sans-serif;
-    color: black;
-}
-
-.row{
+.banner{
     display: flex;
     justify-content: center;
-    justify-content: space-between;
+    align-items: center;
+    align-self: center;
 }
-.login-form{
-    position: relative;
-    top: 50px;
-    display: flex;
-    justify-content: center;
-  
-
+.navbar{
+    position: fixed !important;
+    background-color: white !important;
+    width: 96vw !important;
 }
-.right-login{
-    position: relative;
-    animation: upBottom 2s;
-    animation-fill-mode: forwards;
-
-}
-.sign-up{
-    position: relative;
-    top: 170px;
-}
-.left-about{
-    position: relative;
-    animation: bottomUp 2s;
-    animation-fill-mode: forwards;
-}
-.main-name{
-    display: flex;
-    justify-content: center;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800;
-    font-size: 92px;
-    position: relative;
-    line-height: 85px;
-    top: 100px !important;
-    background: -webkit-linear-gradient(#deb704, #ff1900);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation-fill-mode: forwards;
-    animation: fade 10s;
-}
-@keyframes fade{
-    from{opacity: 0;}
-    to{opacity: 1;}
-}
-@keyframes bottomUp{
-    from{top:500px}
-    to{top:0px}
-}
-@keyframes upBottom{
-    from{top:-500px}
-    to{top:100px}
+.hamburger{
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,166,188,1) 0%, rgba(18,199,237,1) 0%, rgba(0,130,255,1) 100%) !important;
 }

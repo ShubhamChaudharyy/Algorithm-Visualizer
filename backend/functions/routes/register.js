@@ -1,6 +1,8 @@
-const {DB,xdb,auth} = require('../constant')
+const FirebaseClass=require('../constant') 
+var firebase=new FirebaseClass();
 const bodyParser=require('body-parser')
-const {isEmpty,notMatching}=require('../util/util')
+const {isEmpty,notMatching}=require('../util/util');
+const { firestore } = require('firebase-admin');
 module.exports.register=(req,res,next)=>{
     const userDets={email,password,confirmPassword,userName}=req.body;    
     let error={};
@@ -17,8 +19,7 @@ module.exports.register=(req,res,next)=>{
     return res.status(404).json(error)
 
     let token,userId;
-    xdb.doc(`user/${userName}`)
-    .get()
+    firebase.user_signup(userName).get()
     .then(doc=>{
         if(doc.exists){
             return res.status(400).json({handle:'this handle is already taken'})
@@ -27,7 +28,7 @@ module.exports.register=(req,res,next)=>{
             const newUser={
                 ...userDets
             }
-           return auth.createUserWithEmailAndPassword(
+           return firebase.auth.createUserWithEmailAndPassword(
                 newUser.email,
                 newUser.password
             )    
@@ -41,10 +42,10 @@ module.exports.register=(req,res,next)=>{
         token=idtoken;
         const userCredentials={
             ...userDets,
-            createdAt:DB.time_stamp.fromDate(new Date()),
+            createdAt:firebase.time_stamp.fromDate(new Date()),
             userId
         }
-        return xdb.doc(`user/${userDets.userName}`).set(userCredentials)
+        return firebase.user_signup(userName).set(userCredentials)
     })
     .then(()=>{
         return res.status(201).json({token})
