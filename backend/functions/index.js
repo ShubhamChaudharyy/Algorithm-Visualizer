@@ -41,13 +41,13 @@ app.post('/signUp',register)
 app.post('/login',login)
 
 exports.api=firebase.region.https.onRequest(app)
-exports.onLike=firebase.like_notification().onCreate((snapshot)=>{
-    firebase.bug_reports(snapshot.data().screamId)
+exports.onLike=firebase.like_notification().onCreate((snapshot,context)=>{
+    firebase.bug_reports(snapshot.data().bugReportId)
     .get()
     .then(doc=>{
         if(doc.exists){
             return firebase.notification(snapshot.id).set({
-                createdAt:new Date().toISOString,
+                createdAt:new Date().toISOString(),
                 type:'like',
                 read:false,
                 reportId:doc.id,
@@ -64,13 +64,13 @@ exports.onLike=firebase.like_notification().onCreate((snapshot)=>{
         }
     })
 })
-exports.onComment=firebase.comment_notification().onCreate((snapshot)=>{
+exports.onComment=firebase.comment_notification().onCreate((snapshot,context)=>{
     console.log("Triggerred!!!!!")
-    firebase.bug_reports(snapshot.data().reportId).get()
+    firebase.bug_reports(snapshot.data().bugReportId).get()
     .then(doc=>{
         if(doc.exists){
             return firebase.notification(snapshot.id).set({
-                createdAt:new Date().toISOString,
+                createdAt:new Date().toISOString(),
                 user:doc.data().userName,
                 type:'comment',
                 read:false,
@@ -88,8 +88,8 @@ exports.onComment=firebase.comment_notification().onCreate((snapshot)=>{
         }
     })
 })
-exports.onUnLike=firebase.like_notification().onDelete((snapshot)=>{
-    firebase.bug_reports(snapshot.data().reportId)
+exports.onUnLike=firebase.like_notification().onDelete((snapshot,context)=>{
+    firebase.bug_reports(snapshot.data().bugReportId)
     .get()
     .then(doc=>{
         if(doc.exists){
