@@ -14,13 +14,15 @@ var firebaseConfig = {
 }
 admin.initializeApp(firebaseConfig)
 
- class FirebaseClass{
+class FirebaseClass{
     constructor(){
         if(firebase.apps.length===0)
         firebase.initializeApp(firebaseConfig)
+        
         this.auth=firebase.auth()
         this.db=firebase.firestore()
-        this.trigger=functions.firestore;
+        this.region=functions.region('europe-west1')
+        this.trigger=functions.region("europe-west1").firestore;
         this.time_stamp=firebase.firestore.Timestamp
         this.admin_auth=admin.auth()
     }
@@ -35,7 +37,7 @@ admin.initializeApp(firebaseConfig)
     bug_reports(key){
         return(
         key ? 
-        this.db.doc(`/bug_reports/${id}`)
+        this.db.doc(`/bug_reports/${key}`)
         : 
         this.db.collection(`bug_reports`)
         )
@@ -45,7 +47,7 @@ admin.initializeApp(firebaseConfig)
         key ?
         this.db.doc(`/comments/${key}`)
         :
-        this.db.doc(`/comments`) 
+        this.db.collection(`comments`) 
         )
     }
     likes(key){
@@ -53,8 +55,16 @@ admin.initializeApp(firebaseConfig)
         key ?
         this.db.doc(`/likes/${key}`)
         :
-        this.db.doc(`/likes`)
+        this.db.collection(`likes`)
         ) 
+    }
+    notification(id){
+        return(
+            id?
+            this.db.doc(`/notifications/${id}`)
+            :
+            this.db.collection(`notifications`)
+        )
     }
     like_notification(){
         return this.trigger.document('likes/{id}')

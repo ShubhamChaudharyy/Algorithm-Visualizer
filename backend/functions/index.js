@@ -40,14 +40,14 @@ app.post('/add/user_details',fbAuth,userDetails)
 app.post('/signUp',register)
 app.post('/login',login)
 
+exports.api=firebase.region.https.onRequest(app)
 exports.onLike=firebase.like_notification().onCreate((snapshot)=>{
     firebase.bug_reports(snapshot.data().screamId)
     .get()
     .then(doc=>{
         if(doc.exists){
-            return firebaseObject.db.doc(`/notifications/${snapshot.id}`).set({
+            return firebase.notification(snapshot.id).set({
                 createdAt:new Date().toISOString,
-                user:doc.data().userName,
                 type:'like',
                 read:false,
                 reportId:doc.id,
@@ -65,10 +65,11 @@ exports.onLike=firebase.like_notification().onCreate((snapshot)=>{
     })
 })
 exports.onComment=firebase.comment_notification().onCreate((snapshot)=>{
-    xdb.doc(`/bug_reports/${snapshot.data().screamId}`).get()
+    console.log("Triggerred!!!!!")
+    firebase.bug_reports(snapshot.data().reportId).get()
     .then(doc=>{
         if(doc.exists){
-            return firebaseObject.db.doc(`/notifications/${snapshot.id}`).set({
+            return firebase.notification(snapshot.id).set({
                 createdAt:new Date().toISOString,
                 user:doc.data().userName,
                 type:'comment',
@@ -88,11 +89,11 @@ exports.onComment=firebase.comment_notification().onCreate((snapshot)=>{
     })
 })
 exports.onUnLike=firebase.like_notification().onDelete((snapshot)=>{
-    xdb.doc(`/bug_reports/${snapshot.data().reportId}`)
+    firebase.bug_reports(snapshot.data().reportId)
     .get()
     .then(doc=>{
         if(doc.exists){
-            firebaseObject.db.doc(`/notifications/${snapshot.id}`)
+            firebase.notification(snapshot.id)
             .delete()
             .then(()=>{
                 return

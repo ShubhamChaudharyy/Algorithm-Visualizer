@@ -3,13 +3,13 @@ const FirebaseClass=require('../constant')
 var firebase=new FirebaseClass();
 module.exports.getbugReports=(req,res,next)=>{
     firebase.bug_reports()
-    .orderBy('name','asc').get()
+    .get()
     .then(data=>{
         let bug_report=[];
         data.forEach(document=>{
              bug_report.push({...document.data()})
         })
-        return res.send(bug_report)
+        return res.json(bug_report)
     })
     .catch(err=>{ 
         console.log(err) 
@@ -44,7 +44,7 @@ exports.postCommentOnReport=(req,res,next)=>{
     const {body}=req.body
     const incoming_comment={
         body,
-        createdAt:DB.time_stamp.fromDate(new Date()),
+        createdAt:firebase.time_stamp.fromDate(new Date()),
         userName:req.user.userName,
         bugReportId:req.params.reportId
     }
