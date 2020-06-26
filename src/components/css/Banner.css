@@ -7,27 +7,88 @@ body{
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,166,188,1) 0%, rgba(18,199,237,1) 0%, rgba(0,130,255,1) 100%) !important;
 }
 .inner-body{
+    border-radius: 20px;
     height: 90vh;
     width: 96vw;
-    background-color: white;
+    background-color: #ebf9fa;
     margin-top: 30px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
+.parent-right{
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,188,149,1) 0%, rgba(0,233,255,1) 0%, rgba(22,115,199,1) 100%);
+    height: 350px;
+}
+.paper-about{
+    color: black;
+    font-family: 'Poppins',sans-serif;
+    font-size: 30px;
+    top: -120px;
+    font-weight: 600 !important;
+    position: relative;
+}
+.search-bar{
+    position: relative;
+    right: 0px;
+    left: 60%;
+    top: 10px;
+    border:0px;
+    border-radius: 20px;
+    height: 40px;
+    width: 240px;
+    background-color:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,188,149,1) 0%, rgba(0,233,255,1) 0%, rgba(22,115,199,1) 100%); ;
+    color: black !important;
+    font-family: 'Poppins',sans-serif;
+}
+.all-papers-adminPage{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+.paper-heading{
+    font-size: 25px;
+    font-family: 'Poppins',sans-serif;
+}
 
+.head-after-paper{
+    margin-left: 40px;
+    height: 120px;
+    width: 250px;
+    margin-top: 100px;
+    
+}
+.paper-text{
+    font-size: 15px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,188,149,1) 0%, rgba(115,115,115,1) 0%, rgba(149,149,149,1) 100%);
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Poppins',sans-serif;
+  font-weight: bolder;
+  position: relative;
+  top: -70px;
+  left: -30px;
+  font-weight: 900px;
+}
 .top{
    margin: 100px;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent !important; /* make scrollbar transparent */
 }
 .fixed-sidebar{
     height: 89.2vh;
     position: fixed;
-    border-radius: 0px;
-    top: 5vh;
-    width: 200px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius:20px ;
+    top: 4.2vh;
+    width: 242px;
     left: 2vw;
-    background-color: #2778e8;
     color: white;
     transition: 0.2s ease-in;
+    background-color: white;
+    
 }
 .banner{
     display: flex;
@@ -39,7 +100,7 @@ body{
     height: 200px;
 }
 .list-items{
-    margin-top: 30px;
+    margin-top: 10px;
     font-size: 12px;
     padding-left: 20px;
     margin-left: 10px;
@@ -51,6 +112,7 @@ body{
     box-sizing: border-box !important;
     border: 0.4px solid white !important;
     border-radius: 20px;
+    color: #2778e8;
 }
 .list-items:hover{
     background-color: white;
@@ -64,4 +126,35 @@ body{
 }
 .hamburger{
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,166,188,1) 0%, rgba(18,199,237,1) 0%, rgba(0,130,255,1) 100%) !important;
+}
+.activityChart{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+    justify-content: space-around;
+    top: 200px;
+}
+.activity-page{
+    height: 400px;
+    position: relative;
+    top: -150px;
+    color: white !important;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,188,149,1) 0%, rgba(5,55,107,1) 0%, rgba(1,18,71,1) 100%);
+}
+.notification{
+    height: 400px ;
+    position: relative;
+    top:-160px;
+}
+.circ-paper{
+ border-radius: 50% !important;
+ height: 40px;
+ width: 40px;
+ position: relative;
+ top: 10px;
+ left: 80%;
+ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,188,149,1) 0%, rgba(237,71,12,1) 0%, rgba(219,89,8,1) 100%);
+
 }

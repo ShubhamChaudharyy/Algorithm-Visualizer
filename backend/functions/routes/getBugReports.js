@@ -145,7 +145,7 @@ exports.unlikeBugReport=(req,res,next)=>{
     })
 }
 exports.deleteBugReport=(req,res,next)=>{
-    var toBeDeleted=firebase.bug_reports(erq.params.reportId);
+    var toBeDeleted=firebase.bug_reports(req.params.reportId);
     toBeDeleted.get()
     .then(doc=>{
         if(!doc.exists){

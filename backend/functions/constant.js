@@ -13,7 +13,8 @@ var firebaseConfig = {
     measurementId: "G-TDDPWPFZF4"
 }
 admin.initializeApp(firebaseConfig)
-class FirebaseClass{
+
+class FirebaseClass {
     constructor(){
         if(firebase.apps.length===0){
             firebase.initializeApp(firebaseConfig)
@@ -26,39 +27,42 @@ class FirebaseClass{
         this.time_stamp=firebase.firestore.Timestamp
         this.admin_auth=admin.auth()
     }
+    batch(){
+        return this.db.batch()
+    }
     user_signup(username){
         return(
-        username ?
-        this.db.doc(`/user/${username}`)
-        :
-        this.db.collection('user')
+            username ?
+            this.db.doc(`/user/${username}`)
+            :
+            this.db.collection('user')
         )
     }
     bug_reports(key){
         return(
-        key ? 
-        this.db.doc(`/bug_reports/${key}`)
-        : 
-        this.db.collection(`bug_reports`)
+            key ? 
+            this.db.doc(`/bug_reports/${key}`)
+            : 
+            this.db.collection(`bug_reports`)
         )
     }
     comments(key){
         return(
-        key ?
-        this.db.doc(`/comments/${key}`)
-        :
-        this.db.collection(`comments`) 
+            key ?
+            this.db.doc(`/comments/${key}`)
+            :
+            this.db.collection(`comments`) 
         )
     }
     likes(key){
         return(
-        key ?
-        this.db.doc(`/likes/${key}`)
-        :
-        this.db.collection(`likes`)
+            key ?
+            this.db.doc(`/likes/${key}`)
+            :
+            this.db.collection(`likes`)
         ) 
     }
-    notification(id){
+    notifications(id){
         return(
             id?
             this.db.doc(`/notifications/${id}`)
@@ -66,11 +70,17 @@ class FirebaseClass{
             this.db.collection(`notifications`)
         )
     }
+    report_change(){
+        return this.trigger.document('bug_reports/{bugReportId}')
+    }
     like_notification(){
         return this.trigger.document('likes/{id}')
     }
     comment_notification(){
         return this.trigger.document('comments/{id}')
     }
+    user_detail_change(){
+        return this.trigger.document('user/{userId')
+    }
 }
-module.exports = FirebaseClass;
+module.exports = FirebaseClass; 
