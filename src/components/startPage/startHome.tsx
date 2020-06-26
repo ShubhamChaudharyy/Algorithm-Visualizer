@@ -17,7 +17,7 @@ export default()=>{
             <Grid item xs={6}>
                 <div className='about-developer'>
                         <p>
-                        <span style={{fontSize:'90px',fontWeight:600}}>PanchaaYat</span><br/>
+                        <span style={{fontSize:'90px',fontWeight:600}}>TaskForce</span><br/>
                         <div className='developer-words'>
                             Hi, <br/>My name is Subham choudhary
                             , I made this WebApp by taking into 
