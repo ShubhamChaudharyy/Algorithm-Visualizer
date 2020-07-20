@@ -11,6 +11,7 @@ import '../css/Banner.css'
 const ProfilePhoto=()=>{
     return(
     <div className="profile-photo">
+        
     </div>
     )
 }

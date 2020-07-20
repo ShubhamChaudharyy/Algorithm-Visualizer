@@ -4,84 +4,133 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 .parent-start-page{
     display: flex;
-    justify-content: center;
-    
+    flex-direction: row;
+    justify-content: center !important;
+    align-items: center !important;
 }
-p{
-    position: absolute;
-    margin:50px;
+*{
+    font-family: 'Poppins', sans-serif !important;
 }
-.start-page{
-    border-radius: 20px;
-    height: 80vh;
+.all-icons{
+    position: relative;
+    top: -5%;
+    cursor: pointer;
+    color: white;
+    transition: 0.4s ease;
+}
+.every-other-stuff{
+    padding:20px 20px 40px;
+    height: 100%;
+}
+.modal{
+    height: 100vh !important;
+}
+.all-icons:hover{
+transform: scale3d(1.5);
+}
+.register{
+    margin-top: 10%;
+    border:1px solid #2778e8 !important ;
+    height: 25px;
+    text-align: center;
+    color: #2778e8  !important;
+}
+.register:hover{
+    color: white !important;
+    background-color: #2778e8 !important;
+}
+.follow{
+    font-weight: 400;
+    color: white;
+}
+.developer-words{
+    font-weight: 100;
+    font-size: 15px;
+    color: white;
+}
+.heading{
+    color: white;
+}
+.child{
+    margin-top: 15%;;
+    margin-bottom: 15%;
+}
+body{
+    font-family: 'Poppins', sans-serif !important;
+    overflow-x: hidden !important;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,166,188,1) 0%, rgba(18,199,237,1) 0%, rgba(0,130,255,1) 100%) !important;
+}
+.log-reg-view{
+    z-index: 9999999;
+}
+.heading{
+    font-weight: 600;
+    font-size: 50px;
+}
+.about-developer{
+    min-height: 80vh;
+    padding-left: 15px;
+    padding-top: 15px;
+    display: flex;
+    text-align: left;
+    padding-right: 0px;
     width: 90vw;
-    background-color: white;
-    margin-top: 80px;
+    font-size:16px; 
+    border-radius: 20px;   
+    background:#2778e8;
 }
+
 .custom-button{
     text-align: center;
     box-sizing: border-box;
     border: 1px solid white;
-    padding:10px;
     width: 200px;
     font-size: 14px;
     font-weight: 400;
     border-radius: 30px;
-}
-.contribute{
-    margin-top: 60px;
     cursor: pointer;
+    transition: 0.4s ease;
+    color: white;
 }
-.contribute:hover{
+.custom-button:hover{
     background-color: white;
-    color: #2778e8;
-    transition: 0.2s ease-in;
-}
-.register{
-    margin-top: 40px;
-    margin-left: 30%;
-    font-size: 14px;
-    font-weight: 600;
     cursor: pointer;
     color:#2778e8 ;
-    border: 1px solid #2778e8;
 }
-.register:hover{
-    background-color: #2778e8;
-    color: white;
-    transition: 0.2s ease-in;
+.contribute{
+    margin-top: 5%;
+    border: 1px solid white;
+    padding:10px;
+    border-radius: 20px;
+    background-color: white;
+    color:#2778e8 ;
 }
-.about-developer{
-    height: 80vh;
-    position: relative;
-    background:#2778e8;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius:20px;
-    font-family: 'Poppins', sans-serif;
-    color: white;
-    font-size: 20px;
-    font-weight: 200;
+.button-grid{
+    display: flex;
+    flex-direction: row;
 }
-.text-signin{
-    margin-left: 31%;
+.login-view{
+    width: 25vw;
+    height: 50px;
+    margin-right: 5%;
 }
-.outlined-input{
-    width: 400px;
-}
-.developer-words{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 100;
-    font-size: 15px;
-}
-.follow{
-    position: absolute;
-    width: 300px;
-    left: -49px;
-}
-.all-icons{
-    position: absolute;
-    top: 460px;
-}
-body{
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(8,166,188,1) 0%, rgba(18,199,237,1) 0%, rgba(0,130,255,1) 100%) !important;
+
+@media only screen and (min-width: 700px){
+    .about-developer{
+        width: 60vw;
+        min-height: 50vh;
+        margin-bottom: 0% !important;
+        margin-top: 0% !important;
+    }
+    .heading{
+        font-size: 80px;
+    }
+    .child{
+        margin-top: 5%;;
+        margin-bottom: 0%;
+    }
+    .login-view{
+        width: 20vw;
+        height: 50px;
+    }
 }
