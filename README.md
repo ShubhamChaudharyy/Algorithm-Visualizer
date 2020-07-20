@@ -2,3 +2,6 @@
 
 ## Screenshots ⭐:
 
+![alt text](https://github.com/ShubhamChaudharyy/TaskForce/blob/master/img/Screenshot%20(204).png)
+
+![alt text](https://github.com/ShubhamChaudharyy/TaskForce/blob/master/img/Screenshot%20(203).png)
