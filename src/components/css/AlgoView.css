@@ -1,0 +1,97 @@
+.sorting-topics{
+    margin: 5px;
+    color: #2778e8;
+    font-size: 13px;
+    border:1px solid #2778e8;
+    padding: 5px;
+    border-radius: 1vh;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.sorting-topics:hover{
+    color: white;
+    background-color: #2778e8;
+    transition: 0.4s ease;
+}
+.algo-div{
+    margin-bottom: 5vh !important;
+}
+.sorting-topics-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center !important;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.indiv-chips{
+    margin: 5px 5px 10px !important;
+    color: white;
+}
+li{
+    list-style: none !important;
+}
+.visualise{
+    margin: 5px 5px 10px;
+    width: fit-content !important;
+    background-color: #2778e8;
+    padding:10px;
+}
+.visualise:hover{
+    background-color: whitesmoke !important;
+    color: #2778e8;
+}
+.user-input-div{
+    width: 70vw !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5vh;
+}
+.sorting-towers{
+    width: 1vh;
+    bottom: 0px;
+    margin: 1px;
+    background-color:#2778e8 ;
+}
+.grid-parent{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+.algoview-parent{
+    display: flex;
+    justify-content: center;
+}
+.algo-view{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 70vw !important;
+    height: auto;
+    padding-bottom: 5vh;
+    transform: rotate(180deg);
+}
+.user-input{
+    width:10vh !important;
+    margin: 5px 5px 10px !important;
+    border: 0px;
+    padding:5px;
+    align-content: center !important;
+}
+.user-input::placeholder{
+    text-align: center !important;
+}
+@media only screen and (min-width: 700px){
+    .sorting-topics{
+        font-size: 15px;
+    }
+
+    .sorting-towers{
+        width: 3vh;
+    }
+}

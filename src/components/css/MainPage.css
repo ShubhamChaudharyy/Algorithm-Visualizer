@@ -105,6 +105,9 @@ body{
     background-color: white;
     color:#2778e8 ;
 }
+.github-star{
+    width:30vw !important ;
+}
 .button-grid{
     display: flex;
     flex-direction: row;
@@ -130,7 +133,7 @@ body{
         margin-bottom: 0%;
     }
     .login-view{
-        width: 20vw;
+        width: 20vw !important;
         height: 50px;
     }
 }
