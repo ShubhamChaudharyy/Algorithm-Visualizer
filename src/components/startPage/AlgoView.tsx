@@ -1,6 +1,8 @@
 import React,{Fragment,useEffect,useState,Component} from 'react'
 import {Grid,TextField,Container,Dialog,Chip,Paper} from '@material-ui/core'
 import '../css/AlgoView.css'
+import SelectInput from '@material-ui/core/Select/SelectInput'
+let i=0,j=0;
 export default()=>{
     const [chips,setChips]=useState<any[]>([])
     const [clicked,setClicked]=useState<any>(false)
@@ -11,6 +13,24 @@ export default()=>{
     'Bubble Sort','Insertion Sort',
     'Quick Sort','Heap Sort','Bucket Sort',
     'Counting Sort','Radix Sort','Merge Sort'])
+    const randomIntFromInterval=(min,max)=>Math.floor( Math.random()*  ( max - min + 1 ) + min )
+    const swap=(a,b)=>{
+        var h1=document.getElementById(`${a}`)
+        //@ts-ignore
+        h1.style.backgroundColor='red';h1.style.height=`${chips[b]}px`
+        var h2=document.getElementById(`${b}`)
+        //@ts-ignore
+        h2.style.backgroundColor='red';h2.style.height=`${chips[a]}px`
+
+    }
+    const bubble=()=>{
+        for(i=0;i<chips.length;i++){
+            for(j=0;j<chips.length-i-1;j++){
+                if(chips[j]>chips[j+1])
+                {swap(j,j+1);}
+            }
+        }
+    }
     const handleInput=async(e)=>{
         if(e.keyCode==13){
         setChips([...chips,e.target.value]) 
@@ -28,6 +48,7 @@ export default()=>{
                 console.log(method,"is performing!!!!!11")
                 setDone(true)
                 setLabel("Try Other Method")
+                bubble();
             }
             else{
                 setLabel('Visualise') 
@@ -36,6 +57,12 @@ export default()=>{
                 setDone(false);
             }
         }
+    }
+    const randomiseInput=()=>{
+        var Array:any[]=[]
+        for(let i=0;i<10;i++)
+           Array.push(randomIntFromInterval(50,310))
+        setChips(Array)   
     }
     const handleSort=params=>(e)=>{
         setMethod(params)
@@ -49,7 +76,7 @@ export default()=>{
         <div>
         {(true)?
         <Fragment>
-            <Dialog open={false}
+            <Dialog open={true}
             maxWidth='xl'
             aria-labelledby="form-dialog-title" 
             disableBackdropClick={false}>
@@ -59,7 +86,7 @@ export default()=>{
             {
                 sort.map((value,index)=>{
                 return(
-                <div className={`${index} sorting-topics`} 
+                <div className={` sorting-topics`} 
                 //@ts-ignore
                 onClick={handleSort(value)}>
                 {value}
@@ -103,6 +130,9 @@ export default()=>{
             <div className="custom-button visualise" onClick={handleVisualise}>
             {label}
             </div>
+            <div className="custom-button visualise" onClick={randomiseInput}>
+            Random Input
+            </div>
             </Paper>  
             </Grid>
             </Container>
@@ -117,7 +147,8 @@ export default()=>{
             chips.map((value,index)=>{
                 return(
                 <div 
-                className="sorting-towers"
+                className={`sorting-towers`}
+                id={`${index}`}
                 style={{height:`${value}px`}}
                 >
                 </div>

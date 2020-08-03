@@ -52,7 +52,7 @@ li{
     width: 1vh;
     bottom: 0px;
     margin: 1px;
-    background-color:#2778e8 ;
+    background-color:#16f024;
 }
 .grid-parent{
     display: flex !important;
@@ -74,7 +74,6 @@ li{
     width: 70vw !important;
     height: auto;
     padding-bottom: 5vh;
-    transform: rotate(180deg);
 }
 .user-input{
     width:10vh !important;
@@ -92,6 +91,6 @@ li{
     }
 
     .sorting-towers{
-        width: 3vh;
+        width: 0.7vw;
     }
 }
