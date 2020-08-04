@@ -1,4 +1,13 @@
 # Still have to implement all Algorithms
+
+**Steps to Run it**
+
+**1. Go to root folder and type npm start**
+
+**2. click any method bubble sort or any sorting algo(Only Bubble Sort is implemented currently)**
+
+**3. then you can input yoursely or just click random input after that click visualise (please click on any method if not clicked)**
+
 **Here are some Development Shots for You 💗**
 
 ![loading image....](https://github.com/ShubhamChaudharyy/Algorithm-Visualizer/blob/master/img/Screenshot%20(221).png)
