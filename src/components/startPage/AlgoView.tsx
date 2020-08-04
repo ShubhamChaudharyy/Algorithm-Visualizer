@@ -83,7 +83,7 @@ export default()=>{
     }
     const randomiseInput=()=>{
         var Array:any[]=[]
-        for(let i=0;i<60;i++)
+        for(let i=0;i<100;i++)
            Array.push(randomIntFromInterval(50,310))
         setChips(Array) 
         setTempArray(Array)  
