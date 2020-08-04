@@ -3,7 +3,7 @@
 
 ![loading image....](https://github.com/ShubhamChaudharyy/Algorithm-Visualizer/blob/master/img/Screenshot%20(221).png)
 
- **Select Sorting Method( Only Bubble Sort is Implemented Right Now...Other Algos will be implemented Soon )
+ **Select Sorting Method( Only Bubble Sort is Implemented Right Now...Other Algos will be implemented Soon )**
 
 ![loading image....](https://github.com/ShubhamChaudharyy/Algorithm-Visualizer/blob/master/img/Screenshot%20(225).png)
 
