@@ -48,10 +48,14 @@ li{
     justify-content: center;
     margin-top: 5vh;
 }
+.user-input-div-collapse{
+    height: 2vh;
+    
+}
 .sorting-towers{
     width: 1vh;
-    bottom: 0px;
     margin: 1px;
+    bottom: 0px;
     background-color:#16f024;
 }
 .grid-parent{
@@ -74,6 +78,9 @@ li{
     width: 70vw !important;
     height: auto;
     padding-bottom: 5vh;
+}
+.adjuster-div{
+    margin-bottom: 2vh;
 }
 .user-input{
     width:10vh !important;

@@ -8,7 +8,7 @@ export default()=>{
     //@ts-ignore
     const [open,setOpen]=useState<any>(false);
     const handleModal=()=>{
-        setOpen(true);
+        setOpen(true)
     }
     return(
     <div className='parent-start-page'>
@@ -60,7 +60,7 @@ export default()=>{
                     </div>
                 </Grid>
             </Grid>
-        <Modal/>
+        <Modal open={open}/>
         </div>
     </div>
 )

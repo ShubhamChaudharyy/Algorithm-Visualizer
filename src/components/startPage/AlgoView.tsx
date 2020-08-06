@@ -2,18 +2,18 @@ import React,{Fragment,useEffect,useState,Component} from 'react'
 import {Grid,TextField,Container,Dialog,Chip,Paper} from '@material-ui/core'
 import '../css/AlgoView.css'
 import SelectInput from '@material-ui/core/Select/SelectInput'
+import { render } from '@testing-library/react';
 let i=0,j=0;
-export default()=>{
+export default(props)=>{
+    const [opa,setOpa]=useState<any>(false)
     const [chips,setChips]=useState<any[]>([])
     const [clicked,setClicked]=useState<any>(false)
+    const [blockDelete,setBlockDelete]=useState<any>(false)
     const [tempArray,setTempArray]=useState<any[]>([])
-    const [label,setLabel]=useState<any>('Visualise')
     const [done,setDone]=useState<any>(false)
     const [method,setMethod]=useState<any>('none')
-    const [sort,setSorts]=useState<any[]>(['Selection Sort',
-    'Bubble Sort','Insertion Sort',
-    'Quick Sort','Heap Sort','Bucket Sort',
-    'Counting Sort','Radix Sort','Merge Sort'])
+    const [sort,setSorts]=useState<any[]>([
+    'Bubble Sort'])
     const randomIntFromInterval=(min,max)=>Math.floor( Math.random()*  ( max - min + 1 ) + min )
     const swap=(x,a,b)=>{
         setTimeout(()=>{
@@ -25,21 +25,23 @@ export default()=>{
         document.getElementById(`${a}`).style.height=`${chips[b]}px`;
         //@ts-ignore
         document.getElementById(`${b}`).style.height=`${chips[a]}px`;
-        let temp=tempArray[a];
+        let odd=tempArray[a];
         tempArray[a]=tempArray[b];
-        tempArray[b]=temp;
+        tempArray[b]=odd;
         }
         setTimeout(()=>{
         //@ts-ignore    
-        document.getElementById(`${a}`).style.backgroundColor=`#16f024`;document.getElementById(`${b}`).style.backgroundColor=`#16f024`
+        document.getElementById(`${a}`).style.backgroundColor=`#16f024`;
         if(a==tempArray.length-2-x)
-        {j=0;i=x+1;}
+        {j=0;i=x+1;
+        //@ts-ignore    
+        document.getElementById(`${b}`).style.backgroundColor=`#2778e8 `}
         else
         {j=b;i=x;}
         handleCheck();
-        },0)
-        },0)
-        },0)
+        },2000)
+        },2000)
+        },2000)
     }
     const handleCheck=()=>{
         bubble();
@@ -62,19 +64,18 @@ export default()=>{
         console.log(e.target.value)
     }
     const handleVisualise=()=>{
-        if(chips.length<10 || !clicked){
+        if(!clicked){
             alert('hey...select a method')
         }
         else{
-            if(chips.length>=10 && clicked && !done){
+            if(clicked && !done){
                 console.log(method,"is performing!!!!!11")
                 setDone(true)
-                setLabel("Try Other Method")
+                setBlockDelete(true)
                 i=0;j=0;
                 bubble();
             }
             else{
-                setLabel('Visualise') 
                 setChips([])
                 setClicked(false) 
                 setDone(false);
@@ -83,36 +84,53 @@ export default()=>{
     }
     const randomiseInput=()=>{
         var Array:any[]=[]
-        for(let i=0;i<100;i++)
+        for(let i=0;i<10;i++)
            Array.push(randomIntFromInterval(50,310))
         setChips(Array) 
         setTempArray(Array)  
     }
     const handleSort=params=>(e)=>{
-        setMethod(params)
+        //@ts-ignore
+        setMethod(params);document.querySelector('.sorting-topics').style.backgroundColor='white';document.querySelector('.sorting-topics').style.color='#2778e8';document.getElementById(`${e.target.id}`).style.backgroundColor='#2778e8';document.getElementById(`${e.target.id}`).style.color='white'
+        console.log(e.target.id)
         setClicked(true)
     }
     const handleDelete=params=>()=>{
-        setChips((chips)=>chips.filter(chip=>chip!=params))
-        console.log(params)
+        if(!blockDelete)
+        {setChips((chips)=>chips.filter(chip=>chip!=params));
+        setTempArray((tempArray)=>tempArray.filter(temp=>temp!=params))}
+        console.log(chips,tempArray)
     }
+    const handleClose=()=>{
+        setOpa(false)
+    }
+    useEffect(()=>{
+        if(props.open==true)
+        setOpa(true)
+    })
+    //@ts-ignore
+    render()
+    {
     return(
         <div>
         {(true)?
+        //@ts-ignore
         <Fragment>
-            <Dialog open={true}
+            <Dialog open={opa}
             maxWidth='xl'
             aria-labelledby="form-dialog-title" 
+            onClose={handleClose}
             disableBackdropClick={false}>
             <div className="grid-parent">  
             <Grid item xs container className="parent-eq-padding">
             <div className="sorting-topics-div">
-            {
+            {   
                 sort.map((value,index)=>{
                 return(
-                <div className={` sorting-topics`} 
+                <div className="sorting-topics"
                 //@ts-ignore
-                onClick={handleSort(value)}>
+                onClick={handleSort(value)}
+                id={`${value.split(' ').join('')}`}>
                 {value}
                 </div>    
                 )    
@@ -144,29 +162,33 @@ export default()=>{
                 )
                 })
             }
-            <TextField
-            id="standard-basic"
-            className="user-input"
-            onKeyDown={handleInput}
-            placeholder="Input"
-            tabIndex={0}
-            />
-            <div className="custom-button visualise" onClick={handleVisualise}>
-            {label}
-            </div>
             <div className="custom-button visualise" onClick={randomiseInput}>
-            Random Input
+            Randomise Input
             </div>
             </Paper>  
             </Grid>
             </Container>
             </div>
             </Grid>
-            <Grid item xs className="algoview-parent">
+            <Grid item xs className="adjuster">
+            {(chips.length)?(
+            <Fragment>
+            <div className="adjuster-div">
+            <span className="custom-button visualise" onClick={handleVisualise}>Visualise</span>
+            {/* <span className="sort-adjuster">scroller</span> */}
+            </div>
+            </Fragment>
+            ):(
+            <div>{""}</div>    
+            )
+            }
+            </Grid>
+            <Grid item xs className="algoview-parent">    
             <Paper
             className="algo-view"
             elevation={3}
             >
+            <br/>
             {   
             chips.map((value,index)=>{
                 return(
@@ -189,4 +211,5 @@ export default()=>{
         }  
         </div> 
     )
+}
 }
