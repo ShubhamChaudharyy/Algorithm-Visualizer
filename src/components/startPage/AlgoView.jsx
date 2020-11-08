@@ -42,12 +42,12 @@ export default(props)=>{
                             i=x;                        
                         } 
                         handleCheck();
-                    },300)
-                },300)
-        },300)
+                    },1)
+                },1)
+        },1)
     }
     const handleCheck=()=>{
-        if(i==9 && j==0)
+        if(i==199 && j==0)
         return
         else
         bubble()
@@ -94,13 +94,18 @@ export default(props)=>{
     }
     const randomiseInput=()=>{
         var Array=[]
-        for(let i=0;i<200;i++)
+        for(let i=0;i<100;i++)
         Array.push(randomIntFromInterval(50,300))
         setChips(Array) 
         setTempArray(Array)  
     }
     const handleSort=params=>(e)=>{
+        if(params=='Merge Sort'){
+        const test=new Algorithms(tempArray)
+        test.mergeSort(0,99);
+        test.test(0)
         setMethod(params);
+        }
         document.querySelector('.sorting-topics').style.backgroundColor='white';
         document.querySelector('.sorting-topics').style.color='#2778e8';
         document.getElementById(`${e.target.id}`).style.backgroundColor='#2778e8';
@@ -110,9 +115,6 @@ export default(props)=>{
     }
     const handleClassCheck=()=>{
         const NewArray=tempArray;
-        const test=new Algorithms(NewArray)
-        test.mergeSort(0,199);
-        test.test(0)
     }
     const handleDelete=params=>()=>{
         if(!blockDelete){
@@ -167,19 +169,19 @@ export default(props)=>{
             alignItems="center">     
             <Paper className="user-input-div" elevation={3}>
             {
-                chips.map((value,index)=>{
-                return(
-                <li key={index}>
-                    <Chip
-                    className={`${index} indiv-chips`}
-                    label={value}
-                    clickable
-                    color="primary"
-                    onDelete={handleDelete(value)}
-                    />
-                </li>
-                )
-                })
+                // chips.map((value,index)=>{
+                // // return(
+                // // <li key={index}>
+                // //     <Chip
+                // //     className={`${index} indiv-chips`}
+                // //     label={value}
+                // //     clickable
+                // //     color="primary"
+                // //     onDelete={handleDelete(value)}
+                // //     />
+                // // </li>
+                // // )
+                // })
             }
             <div className="custom-button visualise" onClick={randomiseInput}>
             Randomise Input
@@ -220,9 +222,7 @@ export default(props)=>{
                     })    
                 }
                 </Paper>
-                <button onClick={handleClassCheck}>
-
-                </button>
+                
             </Grid>
             </div>
             </Dialog> 
