@@ -1,5 +1,7 @@
 # Still have to implement all Algorithms
 
+Hosted on Netlify : http://algorithm0visualiser.netlify.app/
+
 **Steps to Run it**
 
 **1. Go to root folder and type npm start**
