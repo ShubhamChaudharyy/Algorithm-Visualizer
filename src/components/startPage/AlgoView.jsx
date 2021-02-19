@@ -11,11 +11,10 @@ let i=0,j=0;
 export default(props)=>{
     const globalSize=300;
     const [opa,setOpa]=useState(false)
-    const [speed,setSpeed]=useState(1000);
-    const [chips,setChips]=useState([100,45,34,78]);
+    const [speed,setSpeed]=useState(10000);
+    const [chips,setChips]=useState([400,135,456,234]);
     const [sortProcess,setProcess]=useState(false)
     const [sortType,setSortType]=useState('none');
-    const [limit,setLimit]=useState(4);
     const [sort,setSorts]=useState([ 'Bubble Sort','Merge Sort','Selection Sort','Insertion Sort','Quick Sort'])
     const randomIntFromInterval=(min,max)=>Math.floor( Math.random()*( max - min + 1 ) + min )
     const randomiseInput=(param)=>{
@@ -23,12 +22,13 @@ export default(props)=>{
         for(var i=0;i<param*6;i++){
             temp[i]=5*randomIntFromInterval(0,100);
             setChips(temp);
+            var temp_speed=parseInt(1000/param);
+            setSpeed(temp_speed);
         }
-        setSpeed(parseInt(1000/param));
+        console.log("speed = ",speed)
     }
     const handleInputSlider=(e)=>{
         console.log(e.target.value)
-        const temp=new Array();
         randomiseInput(e.target.value)
     }
     const handleVisualise=()=>{
@@ -41,7 +41,8 @@ export default(props)=>{
             return;
         }
         if(sortType!='none'){
-            const sortObject=new SortSpecifier(sortType,chips,speed);
+            console.log('speed = ',parseInt(speed));
+            const sortObject=new SortSpecifier(sortType,chips,parseInt(speed));
             sortObject.setMethod();
             setProcess(true);
         }
@@ -91,7 +92,6 @@ export default(props)=>{
                 <div className='algo-div container'>
                     <Paper>    
                     {/* <IOSSlider aria-label="ios slider" valueLabelDisplay="on" onHold={handleInputSlider} /> */}
-                    <input type="range" min="4" and max="50" onChange={handleInputSlider}></input>
                     </Paper>
                 </div>
             </Grid>
@@ -100,13 +100,15 @@ export default(props)=>{
                 <Fragment>
                 <div className="adjuster-div">{
                     (!sortProcess)?(
-                        <span className="custom-button visualise" onClick={handleVisualise}>Visualise</span>
+                        <span className="custom-button visualise" onClick={handleVisualise} style={{pointerEvents:'none'}}>Visualise</span>
                     ):(
                         <span className="custom-button visualise other-sort-offer" onClick={handleRefresh}>Try Other Sort</span>
                     )
                 }
-                    <div className="custom-button visualise" onClick={randomiseInput}>
-                        Randomise Input
+                    <div className="custom-button visualise random-input" onClick={randomiseInput} disable="true">
+                        Randomise Input                     
+                        <input type="range" min="4" max="50" defaultValue="4" onChange={handleInputSlider} className="input-slider"></input>
+
                     </div>
                 </div>
                 </Fragment>

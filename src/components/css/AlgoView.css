@@ -57,7 +57,7 @@ li{
     height: 2vh;
 }
 .sorting-towers{
-    width: 0.1vh !important;
+    width: 1vh !important;
     margin: 1px;
     bottom: 0px;
     background-color:#16f024;
@@ -98,12 +98,22 @@ li{
 .user-input::placeholder{
     text-align: center !important;
 }
+.random-input{
+    background-color: whitesmoke !important;
+    color:#2778e8 !important;
+}
+.input-slider{
+    position: relative;
+    top: 3px !important;
+    padding-right: 10px;
+    left: 10px;
+}
 @media only screen and (min-width: 700px){
     .sorting-topics{
         font-size: 15px;
     }
 
     .sorting-towers{
-        width: 1vh !important;
+        width: 5vh !important;
     }
 }
