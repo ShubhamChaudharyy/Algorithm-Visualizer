@@ -1,10 +1,11 @@
 import handleDom, { msp_swap } from './handleDom'
 class Algorithms {
-    constructor(arr){
+    constructor(arr,speed){
         this.arr=arr
         this.Animations=[]
         this.chips=arr
         this.start=0;
+        this.speed=speed;
     }
     test(start){
         var i=0;
@@ -44,11 +45,11 @@ class Algorithms {
                             }
                             info.low2++;
                         }
-                    },60)
+                    },this.speed)
                 this.start++;
                 this.test(this.start)
-            },60)
-        },60)
+            },this.speed)
+        },this.speed)
     }
     recurse(low,high){
         this.Animations.push({low,high})

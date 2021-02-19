@@ -1,138 +1,66 @@
 import React,{Fragment,useEffect,useState,Component} from 'react'
 import {Grid,Container,Dialog,Chip,Paper} from '@material-ui/core'
 import '../css/AlgoView.css'
-import Algorithms from '../algorithms/algorithms'
+import SortSpecifier from '../algorithms/sort_specifier';
+import PropTypes from 'prop-types';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Slider from '@material-ui/core/Slider';
+import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 let i=0,j=0;
 export default(props)=>{
+    const globalSize=300;
     const [opa,setOpa]=useState(false)
-    const [chips,setChips]=useState ([])
-    const [clicked,setClicked]=useState(false)
-    const [blockDelete,setBlockDelete]=useState(false)
-    const [tempArray,setTempArray]=useState ([])
-    const [done,setDone]=useState(false)
-    const [method,setMethod]=useState('none')
-    const [sort,setSorts]=useState ([
-    'Bubble Sort','Merge Sort','Selection Sort','Insertion Sort','Quick Sort'])
-    const randomIntFromInterval=(min,max)=>Math.floor( Math.random()*  ( max - min + 1 ) + min )
-    const swap=(x,a,b)=>{
-        setTimeout(()=>{
-            document.getElementById(`${a}`).style.backgroundColor="red";
-            document.getElementById(`${b}`).style.backgroundColor="red";
-                setTimeout(()=>{
-                    if(tempArray[a]>tempArray[b]){    
-                        document.getElementById(`${a}`).style.height=`${chips[b]}px`;
-                        document.getElementById(`${b}`).style.height=`${chips[a]}px`;
-                        let odd=tempArray[a];
-                        tempArray[a]=tempArray[b];
-                        tempArray[b]=odd;
-                    }
-                    setTimeout(()=>{
-                        document.getElementById(`${a}`).style.backgroundColor=`#16f024`;
-                        if(a==tempArray.length-2-x){
-                            j=0;
-                            i=x+1;
-                            document.getElementById(`${b}`).style.backgroundColor=`#2778e8 `
-                        }
-                        else if(x==tempArray.length-1){
-                        document.getElementById(`${a}`).style.backgroundColor=`#2778e8`;
-                        document.getElementById(`${b}`).style.backgroundColor=`#2778e8`
-                        }
-                        else{
-                            j=b;
-                            i=x;                        
-                        } 
-                        handleCheck();
-                    },1)
-                },1)
-        },1)
-    }
-    const handleCheck=()=>{
-        if(i==199 && j==0)
-        return
-        else
-        bubble()
-    }
-    const bubble=()=>{
-        for(let m=i;m<chips.length;m++){
-            for(let k=j;k<=chips.length-m-1;k++){
-                swap(m,k,k+1);
-                return;
-            }
+    const [speed,setSpeed]=useState(1000);
+    const [chips,setChips]=useState([100,45,34,78]);
+    const [sortProcess,setProcess]=useState(false)
+    const [sortType,setSortType]=useState('none');
+    const [limit,setLimit]=useState(4);
+    const [sort,setSorts]=useState([ 'Bubble Sort','Merge Sort','Selection Sort','Insertion Sort','Quick Sort'])
+    const randomIntFromInterval=(min,max)=>Math.floor( Math.random()*( max - min + 1 ) + min )
+    const randomiseInput=(param)=>{
+        const temp=new Array(); 
+        for(var i=0;i<param*6;i++){
+            temp[i]=5*randomIntFromInterval(0,100);
+            setChips(temp);
         }
+        setSpeed(parseInt(1000/param));
     }
-    const handleInput=async(e)=>{
-        if(e.keyCode==13){
-        setChips([...chips,e.target.value]) 
-        setTempArray([...chips,e.target.value])
-        e.target.value=''
-        }
-        else
+    const handleInputSlider=(e)=>{
         console.log(e.target.value)
-    }
-    const checkArray=()=>{
-        console.log(chips,tempArray)
+        const temp=new Array();
+        randomiseInput(e.target.value)
     }
     const handleVisualise=()=>{
-        if(!clicked){
-            alert('hey...select a method')
+        if(chips.length==0){
+            alert('please hit randomise input');
+            return;
         }
-        else{
-            if(clicked && !done){
-                console.log(method,"is performing!!!!!11")
-                setDone(true)
-                setBlockDelete(true)
-                i=0;j=0;
-                bubble();
-            }
-            else{
-                setChips([])
-                setClicked(false) 
-                setDone(false);
-            }
-            checkArray()
+        if(sortType=='none'){
+            alert('please select a sort type');
+            return;
+        }
+        if(sortType!='none'){
+            const sortObject=new SortSpecifier(sortType,chips,speed);
+            sortObject.setMethod();
+            setProcess(true);
         }
     }
-    const randomiseInput=()=>{
-        var Array=[]
-        for(let i=0;i<100;i++)
-        Array.push(randomIntFromInterval(50,300))
-        setChips(Array) 
-        setTempArray(Array)  
+    const handleSort=(e)=>{
+        console.log(e.target.id,"is selected");
+        setSortType(e.target.id);
+        setSorts(sort.filter((method)=>(method.split(' ').join('')===e.target.id)))
     }
-    const handleSort=params=>(e)=>{
-        if(params=='Merge Sort'){
-        const test=new Algorithms(tempArray)
-        test.mergeSort(0,99);
-        test.test(0)
-        setMethod(params);
-        }
-        document.querySelector('.sorting-topics').style.backgroundColor='white';
-        document.querySelector('.sorting-topics').style.color='#2778e8';
-        document.getElementById(`${e.target.id}`).style.backgroundColor='#2778e8';
-        document.getElementById(`${e.target.id}`).style.color='white'
-        console.log(e.target.id)
-        setClicked(true)
+    const handleRefresh=()=>{
+        setSortType('none')
+        randomiseInput(4);
+        setSorts(['Bubble Sort','Merge Sort','Selection Sort','Insertion Sort','Quick Sort'])
+        setProcess(false)
     }
-    const handleClassCheck=()=>{
-        const NewArray=tempArray;
-    }
-    const handleDelete=params=>()=>{
-        if(!blockDelete){
-            setChips((chips)=>
-            chips.filter(chip=>chip!=params)
-            )
-            setTempArray((tempArray)=>
-            tempArray.filter(temp=>temp!=params)
-            )
-        }
-    }
-    const handleClose=()=>{
-        setOpa(false)
-    }
+    const handleClose=()=>setOpa(false)
     useEffect(()=>{
         if(props.open==true)
             setOpa(true)
-        
     })
     return(
         <div>
@@ -145,62 +73,43 @@ export default(props)=>{
             disableBackdropClick={false}>
             <div className="grid-parent">  
             <Grid item xs container className="parent-eq-padding">
-            <div className="sorting-topics-div">
-            {   
-                sort.map((value,index)=>{
-                return(
-                <div className="sorting-topics"
-                onClick={handleSort(value)}
-                id={`${value.split(' ').join('')}`}>
-                {value}
-                </div>    
-                )    
-                })
-            }   
-            </div>
+                <div className="sorting-topics-div">
+                {   
+                    sort.map((value,index)=>{
+                        return(
+                            <div className="sorting-topics"
+                            onClick={handleSort}
+                            id={`${value.split(' ').join('')}`}>
+                            {sort[index]}
+                            </div>    
+                        )    
+                    })
+                }   
+                </div>
             </Grid>  
             <Grid item xs>
-            <div className='algo-div container'>
-            <Container className="algo-contain">
-            <Grid spacing={3}  
-            container
-            direction="column"
-            justify="center"
-            alignItems="center">     
-            <Paper className="user-input-div" elevation={3}>
-            {
-                // chips.map((value,index)=>{
-                // // return(
-                // // <li key={index}>
-                // //     <Chip
-                // //     className={`${index} indiv-chips`}
-                // //     label={value}
-                // //     clickable
-                // //     color="primary"
-                // //     onDelete={handleDelete(value)}
-                // //     />
-                // // </li>
-                // // )
-                // })
-            }
-            <div className="custom-button visualise" onClick={randomiseInput}>
-            Randomise Input
-            </div>
-            </Paper>  
-            </Grid>
-            </Container>
-            </div>
+                <div className='algo-div container'>
+                    <Paper>    
+                    {/* <IOSSlider aria-label="ios slider" valueLabelDisplay="on" onHold={handleInputSlider} /> */}
+                    <input type="range" min="4" and max="50" onChange={handleInputSlider}></input>
+                    </Paper>
+                </div>
             </Grid>
             <Grid item xs className="adjuster">
-            {   (chips.length)?(
-                    <Fragment>
-                    <div className="adjuster-div">
-                    <span className="custom-button visualise" onClick={handleVisualise}>Visualise</span>
+            {   
+                <Fragment>
+                <div className="adjuster-div">{
+                    (!sortProcess)?(
+                        <span className="custom-button visualise" onClick={handleVisualise}>Visualise</span>
+                    ):(
+                        <span className="custom-button visualise other-sort-offer" onClick={handleRefresh}>Try Other Sort</span>
+                    )
+                }
+                    <div className="custom-button visualise" onClick={randomiseInput}>
+                        Randomise Input
                     </div>
-                    </Fragment>
-                ):(
-                    <div>{""}</div>    
-                )
+                </div>
+                </Fragment>
             }
             </Grid>
             <Grid item xs className="algoview-parent">    

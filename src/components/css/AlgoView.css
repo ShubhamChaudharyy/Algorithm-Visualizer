@@ -5,7 +5,7 @@
     border:1px solid #2778e8;
     padding: 5px;
     border-radius: 1vh;
-    cursor: pointer;
+    cursor: pointer !important;
     transition: 0.3s ease;
 }
 .sorting-topics:hover{
@@ -17,6 +17,7 @@
     margin-bottom: 5vh !important;
 }
 .sorting-topics-div{
+    cursor: pointer !important;
     display: flex;
     flex-direction: row;
     justify-content: center !important;
@@ -36,6 +37,10 @@ li{
     width: fit-content !important;
     background-color: #2778e8;
     padding:10px;
+    cursor: pointer !important;
+}
+.input{
+    margin-top: 2%;
 }
 .visualise:hover{
     background-color: whitesmoke !important;
@@ -50,7 +55,6 @@ li{
 }
 .user-input-div-collapse{
     height: 2vh;
-    
 }
 .sorting-towers{
     width: 0.1vh !important;
@@ -81,6 +85,8 @@ li{
 }
 .adjuster-div{
     margin-bottom: 2vh;
+    display: flex;
+    flex-direction: row;
 }
 .user-input{
     width:10vh !important;
