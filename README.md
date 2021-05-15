@@ -1,6 +1,6 @@
 # Still have to implement all Algorithms
 
-Hosted on Netlify : http://algorithm0visualiser.netlify.app/
+Hosted on Netlify : https://pathfindervisualiser.netlify.app/#
 
 **Steps to Run it**
 
